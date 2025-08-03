@@ -2,6 +2,9 @@
 
 A stunning, production-ready landing page for ADmyBRAND AI Suite, showcasing modern 2025 design trends with glassmorphism effects, smooth animations, and a comprehensive component library.
 
+##Project URL
+**URL**: https://preview--marketing-ai-glow.lovable.app/
+
 ## 🌟 Features
 
 ### Landing Page Sections
