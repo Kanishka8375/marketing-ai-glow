@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const navItems = [
   { label: "Features", href: "#features" },
@@ -12,6 +16,12 @@ const navItems = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    toast.success("Signed out successfully");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,9 +51,9 @@ export function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-gradient">
+            <Link to="/" className="text-2xl font-bold text-gradient">
               ADmyBRAND AI
-            </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -61,12 +71,34 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-muted-foreground hover:text-primary transition-colors">
-              Sign In
-            </button>
-            <button className="btn-primary">
-              Start Free Trial
-            </button>
+            <ThemeToggle />
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">
+                  Welcome, {user.email}
+                </span>
+                <button 
+                  onClick={handleSignOut}
+                  className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/auth">
+                  <button className="text-muted-foreground hover:text-primary transition-colors">
+                    Sign In
+                  </button>
+                </Link>
+                <Link to="/auth">
+                  <button className="btn-primary">
+                    Start Free Trial
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,13 +123,38 @@ export function Navigation() {
                   {item.label}
                 </button>
               ))}
-              <div className="pt-4 border-t border-border">
-                <button className="w-full btn-primary mb-2">
-                  Start Free Trial
-                </button>
-                <button className="text-muted-foreground hover:text-primary transition-colors">
-                  Sign In
-                </button>
+              <div className="pt-4 border-t border-border space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Theme</span>
+                  <ThemeToggle />
+                </div>
+                {user ? (
+                  <>
+                    <span className="text-sm text-muted-foreground">
+                      Welcome, {user.email}
+                    </span>
+                    <button 
+                      onClick={handleSignOut}
+                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/auth" onClick={() => setIsOpen(false)}>
+                      <button className="w-full btn-primary mb-2">
+                        Start Free Trial
+                      </button>
+                    </Link>
+                    <Link to="/auth" onClick={() => setIsOpen(false)}>
+                      <button className="text-muted-foreground hover:text-primary transition-colors">
+                        Sign In
+                      </button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>

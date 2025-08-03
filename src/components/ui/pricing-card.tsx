@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CSSProperties } from "react";
@@ -56,14 +57,16 @@ export function PricingCard({
         ))}
       </ul>
 
-      <button className={cn(
-        "w-full py-4 rounded-lg font-semibold transition-all duration-300",
-        popular 
-          ? "btn-primary" 
-          : "glass-button hover:text-primary"
-      )}>
-        Get Started
-      </button>
+      <Link to="/auth">
+        <button className={cn(
+          "w-full py-4 rounded-lg font-semibold transition-all duration-300",
+          popular 
+            ? "btn-primary" 
+            : "glass-button hover:text-primary"
+        )}>
+          Get Started
+        </button>
+      </Link>
     </div>
   );
 }

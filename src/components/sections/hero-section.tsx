@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { HeroBackground } from "@/components/ui/hero-background";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
@@ -32,15 +33,19 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 lg:justify-start justify-center mb-16 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-              <button className="btn-primary group">
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link to="/auth">
+                <button className="btn-primary group">
+                  Start Free Trial
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
               
-              <button className="btn-secondary group">
-                <Play className="w-5 h-5 mr-2" />
-                Watch Demo
-              </button>
+              <a href="#demo">
+                <button className="btn-secondary group">
+                  <Play className="w-5 h-5 mr-2" />
+                  Watch Demo
+                </button>
+              </a>
             </div>
 
             {/* Stats */}
