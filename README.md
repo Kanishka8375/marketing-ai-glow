@@ -3,10 +3,8 @@
 A stunning, production-ready landing page for ADmyBRAND AI Suite, showcasing modern 2025 design trends with glassmorphism effects, smooth animations, and a comprehensive component library.
 
 ##Netlify URl
-**URL**: Click Here (https://admybrand-ai-suite-saas.netlify.app/)
 
-##Project URL
-**URL**: https://preview--marketing-ai-glow.lovable.app/
+**URL**: Click Here (https://admybrand-ai-suite-saas.netlify.app/)
 
 ## 🌟 Features
 
